@@ -9,11 +9,13 @@ module.exports = function(grunt) {
       server: {
         options: {
           livereload: true,
+          open : true,
           port: 8000,
           hostname: 'localhost',
           base:'app',
         }
       }
+
     },
     project: {
       javascript: {
