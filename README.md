@@ -1,4 +1,4 @@
-# generator-ng-jade-less [![Build Status](https://secure.travis-ci.org/therebelrobot/generator-ng-jade-less.png?branch=master)](https://travis-ci.org/therebelrobot/generator-ng-jade-less)
+# generator-angular-jade-less [![Build Status](https://secure.travis-ci.org/therebelrobot/generator-ng-jade-less.png?branch=master)](https://travis-ci.org/therebelrobot/generator-ng-jade-less)
 
 *version 0.0.1*
 
