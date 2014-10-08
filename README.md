@@ -1,10 +1,12 @@
-# generator-ng-jade-less [![Build Status](https://secure.travis-ci.org/therebelrobot/generator-ng-jade-less.png?branch=master)](https://travis-ci.org/therebelrobot/generator-ng-jade-less)
-
 *version 0.0.1*
 
-Angular/LESScss/Jade generator for [Yeoman](http://yeoman.io).
+Angular/LESScss/Jade generator for [Yeoman](http://yeoman.io) started from https://github.com/therebelrobot/generator-ng-jade-less
 
 ## Getting Started
+
+Requirements:
+
+nodejs, npm
 
 First, install all dependencies:
 

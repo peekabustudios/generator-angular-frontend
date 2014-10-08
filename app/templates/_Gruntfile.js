@@ -9,10 +9,16 @@ module.exports = function(grunt) {
       server: {
         options: {
           livereload: true,
-          port: 8000,
+          port: 9000,
           hostname: 'localhost',
           base:'app',
         }
+      }
+    },
+    open : {
+      dev : {
+        path: 'http://127.0.0.1:8888/src',
+        app: 'Google Chrome'
       }
     },
     project: {
@@ -113,7 +119,6 @@ module.exports = function(grunt) {
     grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
   });
 
-
   // Default task(s).
-  grunt.registerTask('default', ['less', 'jshint', 'concat', 'jade', 'connect', 'concurrent']);
+  grunt.registerTask('default', ['less', 'jshint', 'concat', 'jade',  'open:dev', 'connect', 'concurrent']);
 };
