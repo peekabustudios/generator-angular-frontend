@@ -5,6 +5,21 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.initConfig({
+
+    aws: grunt.file.readJSON('./.grunt.aws.json'),
+    s3: {
+      options: {
+        accessKeyId: '<%= aws.accessKeyId %>',
+        secretAccessKey: '<%= aws.secretAccessKey %>',
+        bucket: '<%= aws.bucket %>',
+        region:'<%= aws.region %>'
+      },
+      build: {
+        cwd: 'app/',
+        src: '**'
+      }
+    },
+
     connect: {
       server: {
         options: {
@@ -19,8 +34,7 @@ module.exports = function(grunt) {
     },
     open : {
       dev : {
-        path: 'http://127.0.0.1:8888/src',
-        app: 'Google Chrome'
+        path: 'http://localhost:9000'
       }
     },
     project: {
@@ -123,4 +137,7 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['less', 'jshint', 'concat', 'jade',  'open:dev', 'connect', 'concurrent']);
+
+
+  grunt.registerTask('deploy', ['s3']);
 };
