@@ -1,8 +1,12 @@
 App.controller('MainCtrl', function ($scope, $routeParams) {
-		$scope.awesomeThings = [
-			'jQuery',
-			'AngularJS',
-			'lessCSS',
-			'Karma'
-		];
-	});
+
+
+    console.log('hello :)');
+
+        $scope.awesomeThings = [
+            'Lorem',
+            'Ipsum',
+            'Dolar',
+            'Sit Amet'
+        ];
+    });
