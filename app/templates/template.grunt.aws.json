@@ -1,0 +1,11 @@
+{
+    "accessKeyId" : "YOUR ACCESS KEY HERE",
+    "secretAccessKey" : "YOUR SECRET ACCESS KEY HERE",
+    "bucket" : "", //specify your bucket name to be uploaded to s3
+    "region" : "" // specify the region your s3 buket is on e.g. 'eu-west-1'
+}
+
+/*
+You will also need to remove 'template' and turn into a dot file for finder
+to see it as a hidden file and for grunt to know what your 23 credentials are.
+*/
