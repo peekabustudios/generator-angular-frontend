@@ -1,1 +1,22 @@
-h1 You have successfuly installed your <%= _.slugify(appName) %> Jade/Less/Angular project!
+header#banner.hero-unit
+  .container
+    h1 'Allo, 'Allo!
+    p.lead This is the peekabu generator <%= _.slugify(appName) %>
+    img(src='img/yeoman.png', alt='I\'m Yeoman')
+
+.container
+  .row
+    .col-lg-12
+      h1.page-header Features:
+      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in awesomeThings')
+         li
+          a(href='#', tooltip='{{thing.info}}')
+            | {{thing}}
+        li awesome thing 1
+        li awesome thing 2
+        li awesome thing 3
+        li awesome thing 4
+footer.footer
+  .container
+    p
+      | Peekabu Ng-jade-less generator v0.0.0.0.1
