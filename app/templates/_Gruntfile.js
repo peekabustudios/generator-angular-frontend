@@ -43,6 +43,39 @@ module.exports = function(grunt) {
         ours: ['src/app.js', 'src/modules/**/*.js'], //this will get the app.js and any js files in their directories
         lib:  ['src/bower_components/jquery/jquery.min.js', 'src/bower_components/angular/angular.min.js', 'src/bower_components/angular/angular-route.min.js', 'src/bower_components/**/*.min.js']
       },
+      app: 'app',
+      source: 'src'
+    },
+    injector: {
+        options: {
+          template:'<%= project.app %>/index.html'
+        },
+        local_dependencies: {
+          options : {
+            starttag: '<!-- injector:js-->',
+            endtag: '<!-- endinjector-->',
+            transform: function(filePath) {
+              filePath = filePath.replace('/src/', '');
+              return '<script src="js/' + filePath + '"></script>';
+            },
+          },
+          files: {
+            '<%= project.app %>/index.html': ['src/app.js', 'src/modules/**/*.js', '!src/modules/**/*.spec.js']
+          }
+        },
+        vendor_dependencies: {
+          options : {
+            starttag: '<!-- injector:js lib-->',
+            endtag: '<!-- endinjector lib-->',
+            transform: function(filePath) {
+              filePath = filePath.replace('/app/', '');
+              return '<script src="' + filePath + '"></script>';
+            },
+          },
+          files : {
+            '<%= project.app %>/index.html': ['<%= project.app %>/lib/*.js'],
+          }
+      }
     },
     less: {
       build: {
@@ -71,6 +104,10 @@ module.exports = function(grunt) {
       options: {
         livereload: true
       },
+      injectJS: {
+        files: ['app/index.html', 'souce/bower_components/**/*.js'],
+        tasks: ['injector']
+      },
       styles: {
         files: ['source/less/**/*.less', 'source/less/*.less' ],
         tasks: ['less'],
@@ -86,13 +123,13 @@ module.exports = function(grunt) {
           nospawn: true,
         }
       },
-      javascript: {
-        files: '<%= project.javascript.ours %>',
-        tasks: ['jshint', 'ngtemplates' , 'concat']
-      },
+      // javascript: {
+      //   files: '<%= project.javascript.ours %>',
+      //   tasks: ['jshint', 'ngtemplates' , 'concat']
+      // },
       javascriptLib: {
         files: '<%= project.javascript.lib %>',
-        tasks: ['jshint','ngtemplates' , 'concat']
+        tasks: ['jshint', 'concat:javascript_lib']
       },
       gruntfile: {
         files: 'Gruntfile.js'
@@ -108,8 +145,17 @@ module.exports = function(grunt) {
       },
       javascript_lib: {
         src: '<%= project.javascript.lib %>',
-        dest: 'app/js/lib.js'
+        dest: 'app/lib/lib.js'
       }
+    },
+    copy: {
+      dev:{
+        files: [{expand: true, cwd: 'src/', src: ['**/*.js','!**/*.spec.js', '!bower_components/**/*'], dest: 'app/js/'},
+        {expand: true, cwd: 'src/bower_components/jquery', src: ['jquery.min.map'], dest: 'app/lib/'}]
+      },
+    },
+    clean: {
+      dev: ["app"],
     },
     jshint: {
       options: {
@@ -139,7 +185,8 @@ module.exports = function(grunt) {
   });
 
   // Default task(s).
-  grunt.registerTask('default', ['less', 'jshint', 'concat', 'jade',  'open:dev', 'connect', 'concurrent', 'watch']);
+  grunt.registerTask('serve', ['clean', 'less', 'jshint', 'concat', 'jade', 'injector', 'copy:dev', 'open:dev', 'connect', 'concurrent']);
+  grunt.registerTask('default', ['serve']);
 
 
   grunt.registerTask('deploy', ['s3']);
