@@ -1,5 +1,5 @@
 {
-  "name": "generator-angular-jade-less",
+  "name": "generator-angular-frontend",
   "version": "0.0.1",
   "description": "Angular/LESScss/Jade generator for yeoman",
   "keywords": [
