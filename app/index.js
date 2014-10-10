@@ -64,8 +64,9 @@ AngularFrontend.prototype.app = function app() {
   this.copy('about/about.less'    , 'src/modules/about/about.less');
   this.copy('about/about.spec.js' , 'src/modules/about/about.spec.js');
 
-  this.copy('base/index.jade', 'src/index.jade');
-  this.copy('base/app.js'    , 'src/app.js');
+  this.copy('index/index.jade', 'src/index.jade');
+  this.copy('index/app.js'    , 'src/app.js');
+  this.copy('index/yeoman.png' , 'src/assets/yeoman.png');
 
   this.copy('_package.json', 'package.json');
   this.copy('_bower.json', 'bower.json');

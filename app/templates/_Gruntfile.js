@@ -31,13 +31,8 @@ module.exports = function(grunt) {
           base:'app',
         }
       }
+    };
 
-    },
-    open : {
-      dev : {
-        path: 'http://localhost:9000'
-      }
-    },
     project: {
       javascript: {
         ours: ['src/app.js', 'src/modules/**/*.js'], //this will get the app.js and any js files in their directories
@@ -151,7 +146,8 @@ module.exports = function(grunt) {
     copy: {
       dev:{
         files: [{expand: true, cwd: 'src/', src: ['**/*.js','!**/*.spec.js', '!bower_components/**/*'], dest: 'app/js/'},
-        {expand: true, cwd: 'src/bower_components/jquery', src: ['jquery.min.map'], dest: 'app/lib/'}]
+        {expand: true, cwd: 'src/bower_components/jquery', src: ['jquery.min.map'], dest: 'app/lib/'},
+        {expand: true, cwd: 'src/assets', src: ['*.{png, jpg, svg, gif}'], dest: 'app/assets/'}]
       },
     },
     clean: {
@@ -185,7 +181,7 @@ module.exports = function(grunt) {
   });
 
   // Default task(s).
-  grunt.registerTask('serve', ['clean', 'less', 'jshint', 'concat', 'jade', 'injector', 'copy:dev', 'open:dev', 'connect', 'concurrent']);
+  grunt.registerTask('serve', ['clean', 'less', 'jshint', 'concat', 'jade', 'injector', 'copy:dev', 'open:dev', 'connect', 'concurrent', 'watch']);
   grunt.registerTask('default', ['serve']);
 
 
