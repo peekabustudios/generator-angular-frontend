@@ -1,0 +1,12 @@
+html.modern
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title <%= _.slugify(appName) %>
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width')
+    link(rel='stylesheet', href='css/style.css')
+    script(src='js/lib.js')
+    script(src='js/main.js')
+  body(ng-app='<%= _.slugify(appName) %>')
+    .container(ng-view='')
