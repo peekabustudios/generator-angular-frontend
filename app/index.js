@@ -25,14 +25,7 @@ AngularFrontend.prototype.askFor = function askFor() {
   var prompts = [{
     name: 'appName',
     message: 'What do you want to call your app?'
-  }
-  // ,{
-  //   type: 'confirm',
-  //   name: 'tRRtoolbelt',
-  //   message: 'Would you like to include tRRtoolbelt.less? (a handy library of LessCSS mixins)',
-  //   default: true
-  // }
-  ];
+  }];
 
   this.prompt(prompts, function (props) {
     this.appName = props.appName;
@@ -44,9 +37,8 @@ AngularFrontend.prototype.askFor = function askFor() {
 
 AngularFrontend.prototype.app = function app() {
   this.mkdir('app');
-  this.mkdir('app/templates');
-  this.mkdir('app/templates/states');
-  this.mkdir('app/templates/directives');
+  this.mkdir('app/partials');
+  this.mkdir('app/partials');
   this.mkdir('app/js');
   this.mkdir('app/css');
   this.mkdir('app/img');
@@ -54,47 +46,33 @@ AngularFrontend.prototype.app = function app() {
   this.mkdir('app/files/fonts');
   this.mkdir('app/files/misc');
 
-  this.mkdir('source');
-  this.mkdir('source/less');
-  this.mkdir('source/less/states');
-  this.mkdir('source/less/directives');
-  this.mkdir('source/js');
-  this.mkdir('source/js/controllers');
-  this.mkdir('source/js/directives');
-  this.mkdir('source/js/factories');
-  this.mkdir('source/js/filters');
-  this.mkdir('source/js/services');
-  this.mkdir('source/jade');
-  this.mkdir('source/jade/templates');
-  this.mkdir('source/jade/templates/states');
-  this.mkdir('source/jade/templates/directives');
+  //this will make the 2 test directorys
+  this.mkdir('src');
+  this.mkdir('src/modules');
+  this.mkdir('src/modules/main');
+  this.mkdir('src/modules/about');
+  this.mkdir('src/less')
+
+  //code blocks for copying the pages. Each page will be in its own directory with all the code need for it
+  this.copy('main/main.js'      , 'src/modules/main/main.js');
+  this.copy('main/main.jade'    , 'src/modules/main/main.jade');
+  this.copy('main/main.less'    , 'src/modules/main/main.less');
+  this.copy('main/main.spec.js' , 'src/modules/main/main.spec.js');
+
+  this.copy('about/about.js'      , 'src/modules/about/about.js');
+  this.copy('about/about.jade'    , 'src/modules/about/about.jade');
+  this.copy('about/about.less'    , 'src/modules/about/about.less');
+  this.copy('about/about.spec.js' , 'src/modules/about/about.spec.js');
+
+  this.copy('base/index.jade', 'src/index.jade');
+  this.copy('base/app.js'    , 'src/app.js');
 
   this.copy('_package.json', 'package.json');
   this.copy('_bower.json', 'bower.json');
   this.copy('_bowerrc', '.bowerrc');
   this.copy('_Gruntfile.js', 'Gruntfile.js');
-  this.copy('_secret.json.template', 'secret.json.template');
-  this.copy('_secret.json.template', 'secret.json');
   this.copy('_gitignore', '.gitignore');
-  this.copy('style_guide.md', 'Style_Guide.md');
-  this.copy('root/index.jade', 'source/jade/index.jade');
-  this.copy('root/templatesMain.jade', 'source/jade/templates/states/main.jade');
-  this.copy('root/templatesAbout.jade', 'source/jade/templates/states/about.jade');
-
-  this.copy('root/app.js', 'source/js/app.js');
-  this.copy('root/mainController.js', 'source/js/controllers/main.js');
-  this.copy('root/aboutController.js', 'source/js/controllers/about.js');
-
-  this.copy('root/less/mainLESS.less', 'source/less/main.less');
-  this.copy('root/less/statesLESS.less', 'source/less/states.less');
-  this.copy('root/less/directivesLESS.less', 'source/less/directives.less');
-  this.copy('root/less/generalsLESS.less', 'source/less/generals.less');
-  this.copy('root/less/colorsLESS.less', 'source/less/colors.less');
-  this.copy('root/less/fontsLESS.less', 'source/less/fonts.less');
-  this.copy('root/less/mixinsLESS.less', 'source/less/mixins.less');
-  this.copy('root/less/tRRtoolbelt.less', 'source/less/tRRtoolbelt.less');
-  this.copy('root/less/statesMainLESS.less', 'source/less/states/main.less');
-  this.copy('root/less/statesAboutLESS.less', 'source/less/states/about.less');
+  this.copy('template.grunt.aws.json', '.grunt.aws.json')
 };
 
 AngularFrontend.prototype.projectfiles = function projectfiles() {

@@ -6,6 +6,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    pkg: grunt.file.readJSON('./package.json'),
     aws: grunt.file.readJSON('./.grunt.aws.json'),
     s3: {
       options: {
@@ -39,19 +40,18 @@ module.exports = function(grunt) {
     },
     project: {
       javascript: {
-        ours: ['source/js/app.js', 'source/js/**/*.js'],
-        lib:  ['source/bower_components/jquery/jquery.min.js', 'source/bower_components/angular/angular.min.js', 'source/bower_components/angular/angular-route.min.js', 'source/bower_components/**/*.min.js']
+        ours: ['src/app.js', 'src/modules/**/*.js'], //this will get the app.js and any js files in their directories
+        lib:  ['src/bower_components/jquery/jquery.min.js', 'src/bower_components/angular/angular.min.js', 'src/bower_components/angular/angular-route.min.js', 'src/bower_components/**/*.min.js']
       },
-      secret: grunt.file.readJSON('./secret.json'),
-      pkg: grunt.file.readJSON('./package.json')
     },
     less: {
       build: {
         files: {
-          "app/css/style.css": "source/less/main.less"
+          "app/css/style.css": ["src/less/main.less", "src/bower_components/bootstrap/less/bootstrap.less", "src/modules/**/*.less"] // convert all the less files into a single style sheet
         }
       }
     },
+
     jade: {
       compile: {
         options: {
@@ -61,9 +61,9 @@ module.exports = function(grunt) {
           pretty:true
         },
         files: {
-          "app/index.html": ["source/jade/index.jade"],
-          "app/templates/states/main.html": ["source/jade/templates/states/main.jade"],
-          "app/templates/states/about.html": ["source/jade/templates/states/about.jade"]
+          "app/index.html": ["src/index.jade"],
+          "app/html/main.html": ["src/modules/**/main.jade"], // this will get all the jade anf 'compile' them to html
+          "app/html/about.html": ["src/modules/**/about.jade"]
         }
       }
     },
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
         livereload: true
       },
       styles: {
-        files: ['**/*.less'],
+        files: ['source/less/**/*.less', 'source/less/*.less' ],
         tasks: ['less'],
         options: {
           nospawn: true,
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
         }
       },
       jade: {
-        files: ['**/*.jade'],
+        files: ['src/modules/**/*.jade', 'src/index.jade'],
         tasks: ['jade'],
         options: {
           nospawn: true,
@@ -88,11 +88,14 @@ module.exports = function(grunt) {
       },
       javascript: {
         files: '<%= project.javascript.ours %>',
-        tasks: ['jshint', 'ngtemplates', 'concat']
+        tasks: ['jshint', 'ngtemplates' , 'concat']
       },
       javascriptLib: {
         files: '<%= project.javascript.lib %>',
-        tasks: ['jshint', 'ngtemplates', 'concat']
+        tasks: ['jshint','ngtemplates' , 'concat']
+      },
+      gruntfile: {
+        files: 'Gruntfile.js'
       }
     },
     concat: {
@@ -136,7 +139,7 @@ module.exports = function(grunt) {
   });
 
   // Default task(s).
-  grunt.registerTask('default', ['less', 'jshint', 'concat', 'jade',  'open:dev', 'connect', 'concurrent']);
+  grunt.registerTask('default', ['less', 'jshint', 'concat', 'jade',  'open:dev', 'connect', 'concurrent', 'watch']);
 
 
   grunt.registerTask('deploy', ['s3']);
