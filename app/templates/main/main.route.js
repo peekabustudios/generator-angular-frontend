@@ -4,6 +4,6 @@ angular.module('<%= _.slugify(appName) %>')
         $routeProvider
             .when('/', {
                 templateUrl: '../../pages/main/main.html',
-                controller : 'MainCtrl'
+                controller: 'MainCtrl'
             });
     });
