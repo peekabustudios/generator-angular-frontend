@@ -56,3 +56,4 @@ vendor
 ehthumbs.db
 Thumbs.db
 .grunt.aws.json
+npm-debug.log

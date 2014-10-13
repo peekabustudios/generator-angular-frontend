@@ -31,15 +31,15 @@ module.exports = function(grunt) {
           base:'app',
         }
       }
-    };
+    },
 
     project: {
       javascript: {
-        ours: ['src/app.js', 'src/modules/**/*.js'], //this will get the app.js and any js files in their directories
+        ours: ['src/app.js', 'src/pages/**/*.js'], //this will get the app.js and any js files in their directories
         lib:  ['src/bower_components/jquery/jquery.min.js', 'src/bower_components/angular/angular.min.js', 'src/bower_components/angular/angular-route.min.js', 'src/bower_components/**/*.min.js']
       },
       app: 'app',
-      source: 'src'
+      src: 'src'
     },
     injector: {
         options: {
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
             },
           },
           files: {
-            '<%= project.app %>/index.html': ['src/app.js', 'src/modules/**/*.js', '!src/modules/**/*.spec.js']
+            '<%= project.app %>/index.html': ['src/app.js', 'src/pages/**/*.js', '!src/pages/**/*.spec.js']
           }
         },
         vendor_dependencies: {
@@ -75,7 +75,7 @@ module.exports = function(grunt) {
     less: {
       build: {
         files: {
-          "app/css/style.css": ["src/less/main.less", "src/bower_components/bootstrap/less/bootstrap.less", "src/modules/**/*.less"] // convert all the less files into a single style sheet
+          "app/css/style.css": ["src/less/main.less", "src/bower_components/bootstrap/less/bootstrap.less", "src/pages/**/*.less"] // convert all the less files into a single style sheet
         }
       }
     },
@@ -88,11 +88,13 @@ module.exports = function(grunt) {
           },
           pretty:true
         },
-        files: {
-          "app/index.html": ["src/index.jade"],
-          "app/html/main.html": ["src/modules/**/main.jade"], // this will get all the jade anf 'compile' them to html
-          "app/html/about.html": ["src/modules/**/about.jade"]
-        }
+        files: [{
+          expand :true,
+          cwd    : '<%= project.src %>',
+          src    : ['pages/**/*.jade', 'index.jade'],
+          dest   : 'app',
+          ext    : '.html'
+        }]
       }
     },
     watch: {
@@ -112,7 +114,7 @@ module.exports = function(grunt) {
         }
       },
       jade: {
-        files: ['src/modules/**/*.jade', 'src/index.jade'],
+        files: ['src/pages/**/*.jade', 'src/index.jade'],
         tasks: ['jade'],
         options: {
           nospawn: true,
@@ -181,7 +183,7 @@ module.exports = function(grunt) {
   });
 
   // Default task(s).
-  grunt.registerTask('serve', ['clean', 'less', 'jshint', 'concat', 'jade', 'injector', 'copy:dev', 'open:dev', 'connect', 'concurrent', 'watch']);
+  grunt.registerTask('serve', ['clean', 'less', 'jshint', 'concat', 'jade', 'injector', 'copy:dev',  'connect', 'concurrent', 'watch']);
   grunt.registerTask('default', ['serve']);
 
 
