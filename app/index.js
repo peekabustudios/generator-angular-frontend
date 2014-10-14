@@ -4,6 +4,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 
 
+
 var AngularFrontend = module.exports = function AngularFrontend(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
@@ -81,4 +82,5 @@ AngularFrontend.prototype.app = function app() {
 AngularFrontend.prototype.projectfiles = function projectfiles() {
   this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');
+  this.copy('yo-rc.son' , '.yo-rc.json');
 };
