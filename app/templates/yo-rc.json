@@ -1,0 +1,27 @@
+{
+  "generator-ng-component": {
+    "routeDirectory": "src/pages/",
+    "directiveDirectory": "src/pages/",
+    "filterDirectory": "src/pages/",
+    "serviceDirectory": "src/pages/",
+    "basePath": "src",
+    "moduleName": "",
+    "filters": [
+      "ngroute"
+    ],
+    "extensions": [
+      "js",
+      "jade",
+      "less"
+    ],
+    "directiveSimpleTemplates": "",
+    "directiveComplexTemplates": "",
+    "filterTemplates": "",
+    "serviceTemplates": "",
+    "factoryTemplates": "",
+    "controllerTemplates": "",
+    "decoratorTemplates": "",
+    "providerTemplates": "",
+    "routeTemplates": ""
+  }
+}

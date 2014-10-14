@@ -4,6 +4,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 
 
+
 var AngularFrontend = module.exports = function AngularFrontend(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
@@ -28,7 +29,7 @@ AngularFrontend.prototype.askFor = function askFor() {
   }];
 
   this.prompt(prompts, function (props) {
-    this.appName = props.appName;
+    this.appName = props.appName + 'App';
     // this.tRRtoolbelt = props.tRRtoolbelt;
 
     cb();
@@ -54,14 +55,14 @@ AngularFrontend.prototype.app = function app() {
   this.mkdir('src/less')
 
   //code blocks for copying the pages. Each page will be in its own directory with all the code need for it
-  this.copy('main/main.route.js'        , 'src/pages/main/main.route.js');
+  this.copy('main/main.js'        , 'src/pages/main/main.js');
   this.copy('main/main.controller.js'   , 'src/pages/main/main.controller.js');
   this.copy('main/main.jade'            , 'src/pages/main/main.jade');
   this.copy('main/main.less'            , 'src/pages/main/main.less');
   this.copy('main/main.spec.js'         , 'src/pages/main/main.spec.js');
 
   this.copy('about/about.controller.js'  , 'src/pages/about/about.controller.js');
-  this.copy('about/about.route.js'       , 'src/pages/about/about.route.js');
+  this.copy('about/about.js'       , 'src/pages/about/about.js');
   this.copy('about/about.jade'           , 'src/pages/about/about.jade');
   this.copy('about/about.less'           , 'src/pages/about/about.less');
   this.copy('about/about.spec.js'        , 'src/pages/about/about.spec.js');
@@ -81,4 +82,5 @@ AngularFrontend.prototype.app = function app() {
 AngularFrontend.prototype.projectfiles = function projectfiles() {
   this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');
+  this.copy('yo-rc.json' , '.yo-rc.json');
 };
