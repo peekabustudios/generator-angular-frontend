@@ -1,4 +1,4 @@
-var App = angular.module('<%= _.slugify(appName) %>', ['ngRoute']);
+var App = angular.module('<%= _.camelize(appName) %>', ['ngRoute']);
 
 
 App.config(function ($routeProvider) {

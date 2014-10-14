@@ -6,7 +6,7 @@ html.modern
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width')
     link(rel='stylesheet', href='css/style.css')
-  body(ng-app='<%= _.slugify(appName) %>')
+  body(ng-app='<%= _.camelize(appName) %>')
     .container(ng-view='')
 
     // injector:js lib
