@@ -17,13 +17,13 @@ $ npm install -g bower
 
 $ npm install -g yo
 
-$ npm install -g generator-angular-jade-less
+$ npm install -g generator-angular-frontend
 ```
 
 Finally, navigate into the desired directory and initiate the generator:
 
 ```
-$ yo angular-jade-less
+$ yo angular-frontend
 
 ```
 
@@ -31,6 +31,12 @@ To begin working on the app, initiate grunt:
 
 ```
 $ grunt
+
+```
+To add a new page with a route, controller, jade, less and spec file
+
+```
+$ yo angular-frontend:route [page name]
 
 ```
 

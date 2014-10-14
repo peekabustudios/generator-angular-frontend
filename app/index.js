@@ -29,7 +29,7 @@ AngularFrontend.prototype.askFor = function askFor() {
   }];
 
   this.prompt(prompts, function (props) {
-    this.appName = props.appName + 'App';
+    this.appName = props.appName;
     // this.tRRtoolbelt = props.tRRtoolbelt;
 
     cb();

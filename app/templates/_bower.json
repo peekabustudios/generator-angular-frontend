@@ -1,5 +1,5 @@
 {
-  "name": "<%= _.slugify(appName) %>",
+  "name": "<%= _.camelize(appName) %>",
   "version": "0.0.0",
   "dependencies": {
     "angular": "~1.2.0",

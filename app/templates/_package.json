@@ -1,5 +1,5 @@
 {
-  "name": "angular_jade_less",
+  "name": "angular-frontend",
   "version": "0.0.1",
   "devDependencies": {
     "body-parser": "^1.9.0",

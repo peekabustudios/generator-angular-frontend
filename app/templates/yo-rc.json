@@ -5,7 +5,7 @@
     "filterDirectory": "src/pages/",
     "serviceDirectory": "src/pages/",
     "basePath": "src",
-    "moduleName": "",
+    "moduleName": "<%= _.camelize(appName) %>",
     "filters": [
       "ngroute"
     ],
