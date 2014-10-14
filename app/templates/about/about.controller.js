@@ -1,6 +1,6 @@
 App.controller('AboutCtrl', function ($scope, $routeParams) {
     'use strict';
-        $scope.awesomeThings = [
+        $scope.about = [
             'Lorem',
             'Ipsum',
             'Dolar',

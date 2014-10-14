@@ -1,6 +1,6 @@
 *version 0.0.1*
 
-Angular/LESScss/Jade generator for [Yeoman](http://yeoman.io) started from https://github.com/therebelrobot/generator-ng-jade-less
+Angular/LESScss and Jade with amazon aws upload generator for [Yeoman](http://yeoman.io) started from https://github.com/peekabustudios/generator-angular-frontend
 
 ## Getting Started
 
@@ -39,7 +39,12 @@ To add a new page with a route, controller, jade, less and spec file
 $ yo angular-frontend:route [page name]
 
 ```
+To use the s3 upload you will need to edit your .grunt.aws.json file and fill out with your aws credentails then when you are ready do
 
+```
+$ grunt deploy
+
+```
 
 ## License
 
