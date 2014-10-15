@@ -3,8 +3,6 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 
-
-
 var AngularFrontend = module.exports = function AngularFrontend(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
@@ -29,24 +27,13 @@ AngularFrontend.prototype.askFor = function askFor() {
   }];
 
   this.prompt(prompts, function (props) {
-    this.appName = props.appName;
-    // this.tRRtoolbelt = props.tRRtoolbelt;
+    this.appName = props.appName + 'App';
 
     cb();
   }.bind(this));
 };
 
 AngularFrontend.prototype.app = function app() {
-  this.mkdir('app');
-  this.mkdir('app/partials');
-  this.mkdir('app/partials');
-  this.mkdir('app/js');
-  this.mkdir('app/css');
-  this.mkdir('app/img');
-  this.mkdir('app/files');
-  this.mkdir('app/files/fonts');
-  this.mkdir('app/files/misc');
-
   //this will make the 2 test directorys
   this.mkdir('src');
   this.mkdir('src/pages');
@@ -71,6 +58,7 @@ AngularFrontend.prototype.app = function app() {
   this.copy('index/app.js'      , 'src/app.js');
   this.copy('index/yeoman.png'  , 'src/assets/yeoman.png');
 
+  // copying config and dependencies
   this.copy('_package.json' , 'package.json');
   this.copy('_bower.json'   , 'bower.json');
   this.copy('_bowerrc'      , '.bowerrc');

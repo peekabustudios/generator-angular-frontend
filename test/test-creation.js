@@ -5,14 +5,14 @@ var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
 
-describe('ng-jade-less generator', function () {
+describe('angular-frontend generator', function () {
   beforeEach(function (done) {
     helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
       if (err) {
         return done(err);
       }
 
-      this.app = helpers.createGenerator('ng-jade-less:app', [
+      this.app = helpers.createGenerator('angular-frontend:app', [
         '../../app'
       ]);
       done();

@@ -1,6 +1,6 @@
-App.controller('MainCtrl', function ($scope, $routeParams) {
+App.controller('MainCtrl', function ($scope) {
  'use strict';
-  console.log('hello :)');
+  console.log('hello');
 
   $scope.awesomeThings = [
     'Angular',

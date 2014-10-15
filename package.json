@@ -1,25 +1,26 @@
 {
   "name": "generator-angular-frontend",
-  "version": "0.0.1",
-  "description": "Angular/LESScss/Jade generator for yeoman",
+  "version": "0.0.3",
+  "description": "Angular/LESScss/Jade generator for yeoman with deployment to s3",
   "keywords": [
     "yeoman-generator",
     "angular",
     "less",
     "jade",
-    "angular-jade-less"
+    "angular-jade-less",
+    "s3"
   ],
-  "homepage": "https://github.com/peekabu/generator-angular-jade-less",
-  "bugs": "https://github.com/peekabu/generator-angular-jade-less/issues",
+  "homepage": "https://github.com/peekabustudios/generator-angular-frontend",
+  "bugs": "https://github.com/peekabustudios/generator-angular-frontend/issues",
   "author": {
-    "name": "James Nesfield",
-    "email": "james@peekabu.com",
+    "name": "Christopher Aitken",
+    "email": "chris@peekabu.com",
     "url": "https://github.com/peekabu"
   },
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/peekabu/generator-angular-jade-less.git"
+    "url": "git@github.com:peekabustudios/generator-angular-frontend.git"
   },
   "scripts": {
     "test": "mocha"
@@ -44,7 +45,6 @@
     }
   ],
   "files": [
-    "pages",
     "route"
   ]
 }

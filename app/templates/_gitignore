@@ -1,10 +1,10 @@
 node_modules
 
 src/bower_components
-app/js
-app/css
-app/index.html
-app/html
+app/
+app/
+app/
+app/
 .grunt.aws.json
 
 .DS_Store

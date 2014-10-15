@@ -1,4 +1,4 @@
-App.controller('AboutCtrl', function ($scope, $routeParams) {
+App.controller('AboutCtrl', function ($scope) {
     'use strict';
         $scope.about = [
             'Lorem',

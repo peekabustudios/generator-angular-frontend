@@ -14,8 +14,27 @@
   "regexp": true,
   "undef": true,
   "unused": true,
-  "strict": true,
   "trailing": true,
   "smarttabs": true,
-  x"white": true
+  "white": true,
+  "browser":true,
+  "globals":{
+          "App":true,
+          "angular":true,
+          "jQuery": true,
+          "io":true,
+          "$":true,
+          "_": false,
+          "window": false,
+          "document": false,
+          "describe"   : false,
+          "it"         : false,
+          "before"     : false,
+          "beforeEach" : false,
+          "after"      : false,
+          "afterEach"  : false,
+          "inject": false,
+          "expect": false
+
+    }
 }

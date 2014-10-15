@@ -21,6 +21,7 @@
     "grunt-injector": "^0.5.4",
     "grunt-open": "^0.2.3",
     "load-grunt-tasks": "*",
+    "jshint-stylish": "^1.0.0",
     "matchdep": "^0.3.0",
     "time-grunt": "*"
   },

@@ -8,6 +8,9 @@ module.exports = function(grunt) {
 
     pkg: grunt.file.readJSON('./package.json'),
     aws: grunt.file.readJSON('./.grunt.aws.json'),
+
+    /* To upload s3 you will need to fill out the information in the .grunt.aws.json file
+    with the relevant information */
     s3: {
       options: {
         accessKeyId: '<%= aws.accessKeyId %>',
@@ -79,7 +82,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
     jade: {
       compile: {
         options: {
@@ -95,41 +97,6 @@ module.exports = function(grunt) {
           dest   : 'app',
           ext    : '.html'
         }]
-      }
-    },
-    watch: {
-      options: {
-        livereload: true
-      },
-      injectJS: {
-        files: ['app/index.html', 'souce/bower_components/**/*.js'],
-        tasks: ['injector']
-      },
-      styles: {
-        files: ['source/less/**/*.less', 'source/less/*.less' ],
-        tasks: ['less'],
-        options: {
-          nospawn: true,
-
-        }
-      },
-      jade: {
-        files: ['src/pages/**/*.jade', 'src/index.jade'],
-        tasks: ['jade'],
-        options: {
-          nospawn: true,
-        }
-      },
-      // javascript: {
-      //   files: '<%= project.javascript.ours %>',
-      //   tasks: ['jshint', 'ngtemplates' , 'concat']
-      // },
-      javascriptLib: {
-        files: '<%= project.javascript.lib %>',
-        tasks: ['jshint', 'concat:javascript_lib']
-      },
-      gruntfile: {
-        files: 'Gruntfile.js'
       }
     },
     concat: {
@@ -157,14 +124,8 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
-        strict: false,
-        laxbreak: true,
-        debug: true,
-        globals: {
-          angular: true,
-          $: true,
-          _: true
-        }
+          jshintrc: '.jshintrc',
+          reporter: require('jshint-stylish')
       },
       all: '<%= project.javascript.ours %>'
     },
@@ -174,6 +135,37 @@ module.exports = function(grunt) {
         options: {
           logConcurrentOutput: true
         }
+      }
+    },
+    watch: {
+      options: {
+        livereload: true
+      },
+      injectJS: {
+        files: ['app/index.html', 'souce/bower_components/**/*.js'],
+        tasks: ['injector']
+      },
+      styles: {
+        files: ['source/less/**/*.less', 'source/less/*.less' ],
+        tasks: ['less'],
+        options: {
+          nospawn: true,
+
+        }
+      },
+      jade: {
+        files: ['src/pages/**/*.jade', 'src/index.jade'],
+        tasks: ['jade'],
+        options: {
+          nospawn: true,
+        }
+      },
+      javascriptLib: {
+        files: '<%= project.javascript.lib %>',
+        tasks: ['jshint', 'concat:javascript_lib']
+      },
+      gruntfile: {
+        files: 'Gruntfile.js'
       }
     }
   });
@@ -185,7 +177,5 @@ module.exports = function(grunt) {
   // Default task(s).
   grunt.registerTask('serve', ['clean', 'less', 'jshint', 'concat', 'jade', 'injector', 'copy:dev',  'connect', 'concurrent', 'watch']);
   grunt.registerTask('default', ['serve']);
-
-
   grunt.registerTask('deploy', ['s3']);
 };
